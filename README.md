@@ -12,7 +12,7 @@
 | Entrega | Link |
 |---|---|
 | Projeto no Wokwi | https://wokwi.com/projects/480729769213749249 |
-| Tópico da travessia no AJA (ao vivo) | `URL_DO_TOPICO` |
+| Tópico da travessia no AJA (ao vivo) | https://api-production-bd33c9e7.up.railway.app/topicos/travessia-01 |
 | Vídeo de demonstração | `URL_DO_VIDEO` |
 
 ## O AJA
@@ -40,6 +40,8 @@ O **AJA Sentinela** é um ESP32 instalado dentro do equipamento de travessia. El
  └──────────────────────────┘                   └───────────────────────────────────────┘
 ```
 
+![Tópico da travessia no AJA](docs/topico.png)
+
 O que cada aviso faz no tópico:
 
 | Aviso do dispositivo | No AJA |
@@ -54,6 +56,8 @@ O que cada aviso faz no tópico:
 O dispositivo não identifica ninguém: só **conta** acionamentos e travessias. Esse comportamento de uso, agregado e anônimo, vira argumento no dossiê ("a botoeira foi acionada 4 vezes enquanto o sinal sonoro estava mudo") e evidência de resultado depois da intervenção.
 
 ## O circuito
+
+![Circuito no Wokwi](docs/circuito.png)
 
 
 | Componente | GPIO | Papel |
@@ -112,7 +116,7 @@ A localização e o tópico ficam no cadastro do dispositivo na plataforma, não
 
 ## Como executar
 
-**Circuito:** abra o link do Wokwi e clique em ▶. Para usar outro servidor, troque `AJA_API_URL` no início do `firmware/sketch.ino`.
+**Circuito:** abra o link do Wokwi e clique em ▶. Os avisos aparecem na tela do tópico em poucos segundos. Para usar outro servidor, troque `AJA_API_URL` no início do `firmware/sketch.ino`.
 
 **API, localmente:**
 
@@ -130,7 +134,7 @@ Variáveis: `AJA_DEVICE_KEY` (chave do dispositivo), `AJA_ADMIN_KEY` (reinício 
 - Nenhum dado pessoal: o dispositivo envia só códigos, contagens e tempos.
 - Cada dispositivo se identifica por um ID e uma chave, comparada em tempo constante. Como o projeto do Wokwi é público, a chave de demonstração fica visível no código; em produção, ela ficaria gravada na memória do ESP32 e seria revogável na plataforma.
 - A tela do tópico insere textos apenas como texto (sem HTML vindo da API) e limita o tamanho dos avisos.
-- Na demonstração, o ESP32 não valida o certificado HTTPS; em produção, o certificado da API seria fixado no firmware.
+- **HTTP no Wokwi, HTTPS em campo:** no simulador, o TLS feito em software deixa o ESP32 lento a ponto de derrubar o Wi-Fi simulado. Por isso o firmware envia por HTTP a um proxy TCP do Railway (`junction.proxy.rlwy.net:30564`), que entrega à mesma API. A tela do tópico continua em HTTPS. O firmware já suporta HTTPS: em campo, basta usar a URL `https://` e fixar o certificado da API.
 
 ## Acessibilidade da tela do tópico
 

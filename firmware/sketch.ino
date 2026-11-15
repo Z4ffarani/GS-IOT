@@ -24,14 +24,16 @@
 #include <time.h>
 
 // ---------------- Configuracao ----------------
-// Tempos encurtados para a demonstracao no Wokwi.
+// Tempos encurtados para a demonstracao no Wokwi. O envio usa HTTP por um
+// proxy TCP do Railway porque o TLS em software deixa o simulador lento demais;
+// em campo, o mesmo codigo envia por HTTPS com o certificado da API fixado.
 static const char *WIFI_SSID = "Wokwi-GUEST";
 static const char *WIFI_SENHA = "";
 static const int WIFI_CANAL = 6;
 
-static const char *AJA_API_URL = "";
+static const char *AJA_API_URL = "http://junction.proxy.rlwy.net:30564/api/v1/dispositivos/eventos";
 static const char *AJA_DEVICE_ID = "AJA-PDOR-TRAV-001";
-static const char *AJA_DEVICE_KEY = "chave-demo-troque-em-producao";
+static const char *AJA_DEVICE_KEY = "aja-_JPURKO1MjEz6COTsdVKLIbq";  // chave de demonstracao
 static const char *LOCAL_REFERENCIA = "Travessia monitorada 01 - Parque Doroteia, Sao Paulo/SP";
 static const char *FIRMWARE_VERSAO = "1.0.0";
 
