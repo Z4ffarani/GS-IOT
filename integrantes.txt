@@ -7,3 +7,4 @@ Integrantes:
 - Pedro Josué Pereira Almeida - RM554913
 
 Projeto no Wokwi: https://wokwi.com/projects/480729769213749249
+Repositório (código do circuito e da API do AJA): https://github.com/Z4ffarani/GS-IoT

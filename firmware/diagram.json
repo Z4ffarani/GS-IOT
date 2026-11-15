@@ -41,8 +41,7 @@
       "top": 170,
       "left": 161,
       "attrs": {
-        "color": "red",
-        "label": "Pare"
+        "color": "red"
       }
     },
     {
@@ -77,8 +76,7 @@
       "top": 170,
       "left": 267,
       "attrs": {
-        "color": "limegreen",
-        "label": "Atravesse"
+        "color": "limegreen"
       }
     },
     {
@@ -104,7 +102,7 @@
       "top": 150,
       "left": 150,
       "attrs": {
-        "text": "SEM\u00c1FORO DE PEDESTRE"
+        "text": "SEMÁFORO DE PEDESTRE"
       }
     },
     {
@@ -148,8 +146,7 @@
       "left": 540,
       "attrs": {
         "color": "blue",
-        "key": "b",
-        "label": "Botoeira"
+        "key": "b"
       }
     },
     {
@@ -205,8 +202,7 @@
       "top": 170,
       "left": -175,
       "attrs": {
-        "color": "orange",
-        "label": "Manuten\u00e7\u00e3o"
+        "color": "orange"
       }
     },
     {
@@ -232,7 +228,7 @@
       "top": 150,
       "left": -215,
       "attrs": {
-        "text": "MANUTEN\u00c7\u00c3O E REDE"
+        "text": "MANUTENÇÃO E REDE"
       }
     },
     {
@@ -241,7 +237,7 @@
       "top": 384,
       "left": -215,
       "attrs": {
-        "text": "Chave \u00e0 direita: normal"
+        "text": "Chave à direita: normal"
       }
     },
     {
@@ -250,7 +246,16 @@
       "top": 406,
       "left": -215,
       "attrs": {
-        "text": "Chave \u00e0 esquerda: simula falha"
+        "text": "Chave à esquerda: simula falha"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tLegenda3",
+      "top": 428,
+      "left": -215,
+      "attrs": {
+        "text": "Triângulo = GND (terra, 0 V) | Seta VCC = alimentação"
       }
     },
     {
@@ -259,7 +264,34 @@
       "top": -75,
       "left": -215,
       "attrs": {
-        "text": "AJA Sentinela: travessia acess\u00edvel monitorada"
+        "text": "AJA Sentinela: travessia acessível monitorada"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tPare",
+      "top": 182,
+      "left": 205,
+      "attrs": {
+        "text": "Pare"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tAtravesse",
+      "top": 182,
+      "left": 311,
+      "attrs": {
+        "text": "Atravesse"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tAlerta",
+      "top": 182,
+      "left": -272,
+      "attrs": {
+        "text": "Manutenção"
       }
     }
   ],

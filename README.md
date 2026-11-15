@@ -59,6 +59,7 @@ O dispositivo não identifica ninguém: só **conta** acionamentos e travessias.
 
 ![Circuito no Wokwi](docs/circuito.png)
 
+**Como ler o desenho:** os **triângulos** são o símbolo de **GND (terra, 0 V)**, o polo negativo comum do circuito; não são o positivo. A **seta com "VCC"**, ao lado do display, é a alimentação. Os LEDs ficam com o catodo (perna curta) no terra e o anodo ligado ao pino do ESP32 por um resistor de 220 Ω. Os rótulos do Wokwi são sempre pretos: no tema escuro do simulador eles quase somem, então para ler os títulos use o tema claro (ícone de sol, no canto superior direito).
 
 | Componente | GPIO | Papel |
 |---|---|---|
@@ -74,7 +75,7 @@ O dispositivo não identifica ninguém: só **conta** acionamentos e travessias.
 
 **Como a falha é detectada:** o pino de retorno fica depois do fio que vai ao componente. Com o circuito íntegro, ele lê o mesmo sinal enviado; com o fio rompido, o pull-down leva a leitura a LOW. A falha (e o conserto) só é confirmada depois de **3 verificações seguidas**, para evitar alarme falso. Com a luz verde apagada, um pulso de 200 µs, invisível, faz o teste.
 
-**Sem internet:** a rede roda numa tarefa separada do FreeRTOS, então o semáforo nunca espera a conexão. Os avisos ficam numa fila e só saem dela depois que a API confirma o recebimento.
+**Sem internet:** o ESP32 roda o [FreeRTOS](https://freertos.org/), um sistema operacional de tempo real para microcontroladores que divide o programa em tarefas executadas ao mesmo tempo. Aqui são duas: uma cuida do semáforo e a outra, num núcleo separado do processador, cuida da internet. Assim, o semáforo nunca espera a conexão. Os avisos passam de uma tarefa para a outra por uma fila e só saem dela depois que a API confirma o recebimento.
 
 ### Chaves de simulação de falha
 
@@ -138,7 +139,14 @@ Variáveis: `AJA_DEVICE_KEY` (chave do dispositivo), `AJA_ADMIN_KEY` (reinício 
 
 ## Acessibilidade da tela do tópico
 
-Contraste de pelo menos 4,5:1 em todos os textos, fonte grande, navegação por teclado com atalho para o conteúdo, anúncio de novas evidências para leitores de tela (`aria-live`) e tradução para Libras pelo **VLibras**.
+| Recurso | Para quem | Como |
+|---|---|---|
+| Libras | Pessoas surdas | Widget do [VLibras](https://www.gov.br/governodigital/pt-br/vlibras) traduz qualquer texto da página |
+| Leitor de tela | Pessoas cegas | Página em português (`lang="pt-BR"`), títulos e listas semânticos, e cada nova evidência anunciada em voz pelo leitor de tela (`aria-live`) |
+| Teclado | Quem não usa mouse | Atalho "Pular para o conteúdo" e foco visível em tudo que é clicável |
+| Contraste | Baixa visão | Todos os textos com contraste de pelo menos 4,5:1 e barras com 3,5:1 ([WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum)); fonte de 17 px e números grandes |
+| Estado em texto | Daltonismo | Situação escrita por extenso ("Falha", "Funcionando", "Barreira ativa"), nunca só pela cor |
+| Movimento reduzido | Sensibilidade a animação | A animação de entrada das evidências é desligada para quem pede menos movimento no sistema |
 
 ## Limitações
 
@@ -154,8 +162,13 @@ Contraste de pelo menos 4,5:1 em todos os textos, fonte grande, navegação por 
 
 ## Referências
 
-- ABNT NBR 9050: Acessibilidade a edificações, mobiliário, espaços e equipamentos urbanos.
-- Conselho Nacional de Trânsito (CONTRAN). Manual Brasileiro de Sinalização de Trânsito, Volume V: Sinalização Semafórica.
-- ONU. Objetivos de Desenvolvimento Sustentável 9, 10 e 11.
-- Espressif. Documentação do ESP32 Arduino Core.
-- Wokwi. Documentação do simulador.
+- ABNT. [NBR 9050:2020: Acessibilidade a edificações, mobiliário, espaços e equipamentos urbanos](https://normas.com.br/visualizar/abnt-nbr-nm/5807/abnt-nbr9050-acessibilidade-a-edificacoes-mobiliario-espacos-e-equipamentos-urbanos).
+- CONTRAN. [Manual Brasileiro de Sinalização de Trânsito, Volume V: Sinalização Semafórica (2022)](https://www.gov.br/transportes/pt-br/assuntos/transito/arquivos-senatran/docs/copy_of___05___MBST_Vol._V___Sinalizacao_Semaforica.pdf).
+- Ministério dos Transportes. [Consulta pública: sinal sonoro para travessia de pedestres com deficiência visual no MBST Volume V](https://www.gov.br/participamaisbrasil/inclusao-padroes-criterios-para-sinalizacao-semaforica).
+- ONU Brasil. [Objetivos de Desenvolvimento Sustentável](https://brasil.un.org/pt-br/sdgs).
+- W3C. [WCAG 2.1: Contraste mínimo (critério 1.4.3)](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum).
+- Governo Digital. [VLibras](https://www.gov.br/governodigital/pt-br/vlibras).
+- [FreeRTOS](https://freertos.org/) e Espressif. [FreeRTOS no ESP32 (ESP-IDF)](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/system/freertos_idf.html).
+- Espressif. [Documentação do ESP32 Arduino Core](https://docs.espressif.com/projects/arduino-esp32/).
+- Wokwi. [Documentação do simulador](https://docs.wokwi.com/diagram-format).
+- [FastAPI](https://fastapi.tiangolo.com).
