@@ -1,63 +1,132 @@
-# Registro de uso de IA — Physical Computing (IoT & IoB)
+# Prompts usados com IA
 
-**Projeto:** AJA, GS FIAP 2026.2 CitizenTech
-**Ferramenta:** Claude (Anthropic), modelo Claude Opus 5.5, em sessões de novembro de 2026.
-
-A IA foi usada como copiloto. As decisões de produto (o recorte do AJA, o público e o bairro), a gravação e a narração do vídeo e a validação final no Wokwi são da equipe. Cada entrada abaixo resume o pedido, o que a IA produziu e o que a equipe conferiu ou mudou. Os prompts estão resumidos, com o sentido preservado.
+Registro dos pedidos feitos ao assistente de IA (Claude, da Anthropic) durante o desenvolvimento desta entrega, como pede o briefing da Global Solution 2026.2 (CitizenTech), na disciplina de Physical Computing (IoT & IoB). Os pedidos estão resumidos e reescritos por etapa, na ordem do trabalho, com o que resultou de cada um. As decisões de escopo, revisão e aprovação foram da equipe.
 
 ---
 
-### 1. Leitura do enunciado e proposta de circuito
-- **Prompt:** ler o enunciado de Physical Computing e o material do AJA e explicar o que poderia ser desenvolvido, sem começar a implementar.
-- **Objetivo:** entender os requisitos (ESP32 no Wokwi, vídeo de até 4 min e o circuito ligado ao AJA, não um projeto paralelo).
-- **Resultado:** a proposta do *AJA Sentinela*, um semáforo de pedestre acessível que detecta as próprias falhas e envia eventos ao AJA.
-- **Revisão da equipe:** pedimos para avançar por partes e confirmamos que o hardware precisava estar conectado à plataforma.
+## 1. Entender a tarefa
 
-### 2. Ligação entre o hardware e o AJA
-- **Prompt:** enfatizar a ligação entre o hardware e o AJA e a premissa da plataforma. Ideia da equipe: contar quantas pessoas precisaram do equipamento enquanto ele estava quebrado.
-- **Resultado:** os eventos `FALHA_DETECTADA`, `FALHA_RESOLVIDA` (com tempo inoperante e acionamentos durante a falha) e `RELATORIO_PERIODICO` (IoB sem dado pessoal).
-- **Revisão da equipe:** aprovamos a métrica de "acionamentos durante a falha" como evidência para o dossiê.
+**Pedido:** ler o enunciado de Physical Computing e o material do AJA, sem começar a implementar, e explicar se uma API ligada ao circuito ficaria conectada à plataforma, já que o circuito não pode ser um projeto paralelo.
 
-### 3. Escolha do destino dos eventos
-- **Prompt:** perguntas sobre o endpoint, o estilo do vídeo, a paleta e a fonte.
-- **Resultado:** uma API mínima do AJA (FastAPI + SQLite) publicada no Railway, com a página do tópico da travessia.
-- **Revisão da equipe:** escolhemos o "endpoint mínimo do AJA", aprovamos a criação do projeto no Railway e pedimos para ser informados de cada tecnologia usada.
+**Resultado:** levantamento dos requisitos: projeto ESP32 no Wokwi com link, vídeo de até 4 minutos e arquivo com os integrantes. Ficou claro que o circuito precisa alimentar o AJA. A equipe decidiu avançar por partes.
 
-### 4. Montagem do circuito e do firmware no Wokwi
-- **Prompt:** montar o circuito e o código na conta Wokwi da equipe, com nome definido e link compartilhável.
-- **Resultado:** `firmware/sketch.ino`, `firmware/diagram.json` e `firmware/libraries.txt`. O firmware tem uma tarefa de rede separada (FreeRTOS), fila de eventos, verificação elétrica por pinos de retorno e falha confirmada após 3 leituras seguidas.
-- **Revisão da equipe:** testamos os cenários no simulador e escolhemos salvar o projeto como público.
+**Pedido:** explicar o que se pensou em desenvolver.
 
-### 5. Organização visual do circuito
-- **Prompt:** "Faça um circuito organizadinho".
-- **Resultado:** o layout foi refeito por blocos (manutenção e rede, semáforo, sinal sonoro, botoeira, display), com fios roteados e rótulos.
-- **Revisão da equipe:** apontamos rótulos ilegíveis e a dúvida sobre os triângulos (que são GND), o que levou à legenda no próprio desenho.
+**Resultado:** proposta do AJA Sentinela, um ESP32 dentro do semáforo de pedestre que opera a travessia acessível, verifica se o som, a luz verde e a botoeira funcionam e envia as falhas ao tópico da travessia no AJA.
 
-### 6. Comentários do código
-- **Prompt:** usar menos comentários, gerais mas essenciais e que cheguem às conclusões.
-- **Resultado:** um cabeçalho geral e um comentário conclusivo por bloco do firmware.
-- **Revisão da equipe:** lemos o código bloco a bloco para conseguir explicar cada parte.
+## 2. Definir o escopo e a ligação com o AJA
 
-### 7. Página do tópico e acessibilidade
-- **Prompt:** explicar como a acessibilidade aparece no painel.
-- **Resultado:** a página `api/static` com avisos lidos por leitor de tela (`aria-live`), VLibras, contraste mínimo de 4,5:1 e respeito a "reduzir movimento".
-- **Revisão da equipe:** conferimos a página no navegador durante a gravação.
+**Pedido:** enfatizar a ligação entre o hardware e o AJA e a premissa da plataforma, partindo da ideia da equipe de reportar mau funcionamento e contar quantas pessoas precisaram do equipamento durante a falha.
 
-### 8. Ajustes do README
-- **Prompt:** adicionar a legenda dos símbolos, rótulos legíveis, explicação do FreeRTOS, rótulos ao lado dos LEDs e links nas referências.
-- **Resultado:** README com a seção "Como ler o desenho", tabela de pinos, explicação do FreeRTOS, seção de segurança e referências com links.
-- **Revisão da equipe:** decidimos compartilhar o repositório junto da entrega.
+**Resultado:** quatro eventos definidos: `DISPOSITIVO_INICIADO`, `FALHA_DETECTADA`, `FALHA_RESOLVIDA` (com `tempo_inoperante_s` e `acionamentos_durante_falha`) e `RELATORIO_PERIODICO`. Este último é o lado IoB e não usa dado pessoal: só acionamentos, ciclos e disponibilidade.
 
-### 9. Roteiro do vídeo
-- **Prompt:** passar o roteiro de vídeo e narração em mensagem.
-- **Resultado:** o roteiro em tomadas (apresentação, circuito, falhas e painel do AJA).
-- **Revisão da equipe:** a narração foi gravada por nós, com o texto adaptado, e as gravações de tela foram feitas por nós no Wokwi e no painel.
+**Pedido:** escolher o destino dos eventos e o formato do vídeo.
 
-### 10. Edição do vídeo
-- **Prompt:** cortar as gravações para mostrar só o circuito e a interface (sem a barra do navegador nem a barra de tarefas) e montar o vídeo com a narração e a trilha.
-- **Resultado:** edição a partir das gravações da equipe, com conversão de cor das gravações HDR, cortes e sobreposições sóbrias.
-- **Revisão da equipe:** a narração, as trilhas e a revisão do corte final são da equipe.
+**Resultado:** a equipe escolheu um endpoint mínimo do AJA e um vídeo misto, com paleta neutra do AJA e a fonte IBM Plex Sans, em tom sóbrio. O projeto do Wokwi ficou público e o código foi para o repositório `Z4ffarani/GS-IoT`.
 
----
+**Pedido:** informar cada tecnologia usada e pedir aprovação antes de criar algo nas contas da equipe.
 
-**Limites:** a chave do dispositivo no firmware é só de demonstração. Os relatos de moradores exibidos na página são simulados, e nenhum dado pessoal é coletado pelo dispositivo.
+**Resultado:** tecnologias listadas: Wokwi, ESP32 com Arduino core 3.x e FreeRTOS, ArduinoJson, LiquidCrystal I2C, FastAPI, SQLite, Docker e Railway. A criação do serviço no Railway foi aprovada pela equipe antes de ser feita.
+
+## 3. Construir o circuito e o firmware
+
+**Pedido:** montar no Wokwi o circuito e o código do projeto "SEM2 - GS - PHYSICAL COMPUTING IOT & IOB", com link para compartilhar.
+
+**Resultado:** `firmware/sketch.ino`, `firmware/diagram.json` e `firmware/libraries.txt` no projeto, com estes componentes:
+- ESP32 DevKit C v4;
+- botoeira lida por interrupção;
+- LEDs Pare e Atravesse;
+- buzzer para o som de localização e da travessia;
+- LCD 1602 I2C para a contagem;
+- LED âmbar de manutenção;
+- chaves que simulam falhas e queda de rede.
+
+A rede roda numa tarefa FreeRTOS separada, com fila de 24 eventos. Cada falha é verificada por pinos de retorno elétrico e só é confirmada após 3 leituras seguidas.
+
+**Pedido:** deixar o circuito organizado.
+
+**Resultado:** layout refeito por blocos (manutenção e rede, semáforo de pedestre, sinal sonoro, botoeira, display), com fios roteados, símbolos de GND e VCC e rótulos por bloco.
+
+**Pedido:** usar menos comentários no código, gerais mas essenciais e conclusivos.
+
+**Resultado:** firmware com um cabeçalho geral e um comentário conclusivo por bloco, no lugar de comentários linha a linha.
+
+## 4. Construir a API e a página do tópico
+
+**Pedido:** criar o endpoint mínimo do AJA que recebe os eventos do circuito.
+
+**Resultado:** `api/main.py` em FastAPI e SQLite, com:
+- `POST /api/v1/dispositivos/eventos`: autenticado por chave do dispositivo, limite de 4 KB e eventos repetidos ignorados;
+- `GET /api/v1/topicos/{id}`;
+- reinício protegido da demonstração.
+
+A página `api/static/topico.html` mostra a situação do equipamento, os indicadores de impacto, a linha do tempo de evidências e o dossiê. A API está publicada no Railway com `Dockerfile` e volume.
+
+**Pedido:** explicar a escolha de HTTP sem TLS no Wokwi.
+
+**Resultado:** com HTTPS, a simulação caía para cerca de 3% da velocidade. A solução foi um proxy TCP com HTTP no Wokwi, e o README registra que, em campo, o envio usa HTTPS.
+
+## 5. Revisar
+
+**Pedido:** confirmar que o simulador funciona por completo.
+
+**Resultado:** testes no Wokwi integrados à API publicada (respostas HTTP 201) cobriram:
+- falha e conserto do som, da luz verde e da botoeira travada;
+- queda de rede com fila;
+- travessia completa;
+- relatório periódico.
+
+**Pedido:** corrigir a leitura do desenho do circuito. Os triângulos pareciam polo positivo, o texto preto ficava ilegível no tema escuro e os rótulos estavam embaixo dos LEDs.
+
+**Resultado:** a legenda no desenho diz "Triângulo = GND (terra, 0 V) | Seta VCC = alimentação", e os rótulos Pare, Atravesse e Manutenção foram para o lado dos LEDs. A imagem do README passou a usar o tema claro, porque o texto do Wokwi é sempre preto.
+
+**Pedido:** explicar como a acessibilidade aparece no painel.
+
+**Resultado:** o painel tem:
+- avisos anunciados por leitor de tela (`aria-live`);
+- VLibras;
+- contraste mínimo de 4,5:1;
+- respeito à opção de reduzir movimento;
+- textos inseridos sem HTML.
+
+Esses pontos estão em uma tabela no README.
+
+## 6. Documentar
+
+**Pedido:** escrever o README destacando a premissa do AJA e a ligação entre o hardware e a plataforma.
+
+**Resultado:** o `README.md` reúne:
+- equipe no topo e tabela de entregáveis;
+- premissa e problema;
+- diagrama hardware↔AJA com a tabela de eventos;
+- IoB, circuito com tabela de pinos e explicação do FreeRTOS;
+- API, como executar, segurança e acessibilidade;
+- limitações, ODS e referências.
+
+**Pedido:** colocar links nas referências e explicar o termo FreeRTOS.
+
+**Resultado:** referências com links (NBR 9050, Manual Brasileiro de Sinalização de Trânsito, ODS, WCAG, VLibras, FreeRTOS, Espressif, Wokwi e FastAPI) e uma seção curta sobre o que é o FreeRTOS e por que a rede roda numa tarefa separada.
+
+**Pedido:** gerar o arquivo com os integrantes.
+
+**Resultado:** `integrantes.txt` com os três integrantes e RMs, o link do Wokwi e o link do repositório.
+
+## 7. Preparar o vídeo
+
+**Pedido:** passar o roteiro do vídeo e da narração em mensagem.
+
+**Resultado:** roteiro em 10 blocos: abertura, o AJA e o problema em cenas animadas, e as tomadas A a D gravadas no Wokwi e no painel (circuito e travessia normal, falha que vira evidência e conserto, queda de internet, IoB), terminando no encerramento animado.
+
+**Pedido:** explicar o que gravar na tela, por que existe um link específico para reiniciar a demonstração e para que servem vários toques na botoeira em poucos segundos.
+
+**Resultado:** cada tomada foi descrita passo a passo. O link de reinício leva uma chave, para que só a equipe consiga zerar o tópico antes de gravar. Os toques repetidos durante a falha mostram a contagem de acionamentos subindo no painel.
+
+**Pedido:** editar o vídeo com as gravações e a narração da equipe, mostrando só o circuito e a interface, sem a barra do navegador e a barra de tarefas.
+
+**Resultado:** as gravações em HDR foram convertidas para cor padrão e recortadas na área do circuito e do painel. As cenas animadas foram montadas na paleta neutra do AJA, e a narração da equipe foi sincronizada com as tomadas.
+
+## 8. Revisar e entregar
+
+**Pedido:** registrar os pedidos feitos à IA num `prompts.md`.
+
+**Resultado:** este arquivo, organizado por etapa do trabalho.
