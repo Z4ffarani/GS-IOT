@@ -1,0 +1,9 @@
+SEM2 - GS - PHYSICAL COMPUTING IOT & IOB
+AJA Sentinela: travessia acessível monitorada (CitizenTech AJA)
+
+Integrantes:
+- Guilherme Santos Nunes - RM558989
+- Kaique Rodrigues Zaffarani - RM556677
+- Pedro Josué Pereira Almeida - RM554913
+
+Projeto no Wokwi: https://wokwi.com/projects/480729769213749249

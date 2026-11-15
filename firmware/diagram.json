@@ -1,0 +1,503 @@
+{
+  "version": 1,
+  "author": "Equipe AJA - GS FIAP 2026.2",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -13,
+      "left": 226,
+      "attrs": {
+        "pins": "i2c"
+      }
+    },
+    {
+      "type": "wokwi-vcc",
+      "id": "vccLcd",
+      "top": -9.5,
+      "left": 198.4,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tLcd",
+      "top": -42,
+      "left": 300,
+      "attrs": {
+        "text": "DISPLAY: contagem regressiva"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledVermelho",
+      "top": 170,
+      "left": 161,
+      "attrs": {
+        "color": "red",
+        "label": "Pare"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "rVermelho",
+      "top": 259.9,
+      "left": 156.8,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-gnd",
+      "id": "gndVermelho",
+      "top": 244,
+      "left": 149.8,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "swLuz",
+      "top": 228,
+      "left": 214,
+      "attrs": {
+        "value": "1"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledVerde",
+      "top": 170,
+      "left": 267,
+      "attrs": {
+        "color": "limegreen",
+        "label": "Atravesse"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "rVerde",
+      "top": 259.9,
+      "left": 262.8,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-gnd",
+      "id": "gndVerde",
+      "top": 244,
+      "left": 255.8,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tSemaforo",
+      "top": 150,
+      "left": 150,
+      "attrs": {
+        "text": "SEM\u00c1FORO DE PEDESTRE"
+      }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "swSom",
+      "top": 228,
+      "left": 356,
+      "attrs": {
+        "value": "1"
+      }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 164,
+      "left": 413,
+      "attrs": {
+        "volume": "0.1"
+      }
+    },
+    {
+      "type": "wokwi-gnd",
+      "id": "gndBz",
+      "top": 260,
+      "left": 415.8,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tSom",
+      "top": 150,
+      "left": 365,
+      "attrs": {
+        "text": "SINAL SONORO"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 209,
+      "left": 540,
+      "attrs": {
+        "color": "blue",
+        "key": "b",
+        "label": "Botoeira"
+      }
+    },
+    {
+      "type": "wokwi-gnd",
+      "id": "gndBtn",
+      "top": 253,
+      "left": 610.8,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "swBotao",
+      "top": 269.1,
+      "left": 664.9,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-gnd",
+      "id": "gndSwBotao",
+      "top": 274.0,
+      "left": 632.8,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tBotoeira",
+      "top": 150,
+      "left": 535,
+      "attrs": {
+        "text": "BOTOEIRA"
+      }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "swRede",
+      "top": 228,
+      "left": -96,
+      "attrs": {
+        "value": "1"
+      }
+    },
+    {
+      "type": "wokwi-gnd",
+      "id": "gndRede",
+      "top": 274,
+      "left": -113.2,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledAlerta",
+      "top": 170,
+      "left": -175,
+      "attrs": {
+        "color": "orange",
+        "label": "Manuten\u00e7\u00e3o"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "rAlerta",
+      "top": 259.9,
+      "left": -179.2,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-gnd",
+      "id": "gndAlerta",
+      "top": 244,
+      "left": -186.2,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tManut",
+      "top": 150,
+      "left": -215,
+      "attrs": {
+        "text": "MANUTEN\u00c7\u00c3O E REDE"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tLegenda1",
+      "top": 384,
+      "left": -215,
+      "attrs": {
+        "text": "Chave \u00e0 direita: normal"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tLegenda2",
+      "top": 406,
+      "left": -215,
+      "attrs": {
+        "text": "Chave \u00e0 esquerda: simula falha"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tTitulo",
+      "top": -75,
+      "left": -215,
+      "attrs": {
+        "text": "AJA Sentinela: travessia acess\u00edvel monitorada"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "esp:23",
+      "lcd1:SDA",
+      "green",
+      []
+    ],
+    [
+      "esp:22",
+      "lcd1:SCL",
+      "purple",
+      []
+    ],
+    [
+      "lcd1:GND",
+      "esp:GND.2",
+      "black",
+      [
+        "h-8",
+        "v-51",
+        "h-104",
+        "v61"
+      ]
+    ],
+    [
+      "lcd1:VCC",
+      "vccLcd:VCC",
+      "red",
+      [
+        "h-22"
+      ]
+    ],
+    [
+      "ledVermelho:A",
+      "rVermelho:1",
+      "gray",
+      []
+    ],
+    [
+      "ledVermelho:C",
+      "gndVermelho:GND",
+      "black",
+      [
+        "v26",
+        "h-16"
+      ]
+    ],
+    [
+      "esp:19",
+      "rVermelho:2",
+      "red",
+      [
+        "h45",
+        "v264",
+        "h40"
+      ]
+    ],
+    [
+      "esp:18",
+      "swLuz:2",
+      "green",
+      [
+        "h39",
+        "v262",
+        "h90"
+      ]
+    ],
+    [
+      "ledVerde:A",
+      "rVerde:1",
+      "gray",
+      []
+    ],
+    [
+      "ledVerde:C",
+      "gndVerde:GND",
+      "black",
+      [
+        "v26",
+        "h-16"
+      ]
+    ],
+    [
+      "swLuz:3",
+      "rVerde:2",
+      "green",
+      [
+        "v38",
+        "h52"
+      ]
+    ],
+    [
+      "esp:5",
+      "swLuz:3",
+      "yellow",
+      [
+        "h33",
+        "v261",
+        "h106",
+        "v-76"
+      ]
+    ],
+    [
+      "esp:17",
+      "swSom:2",
+      "magenta",
+      [
+        "h27",
+        "v259",
+        "h244"
+      ]
+    ],
+    [
+      "bz1:1",
+      "gndBz:GND",
+      "black",
+      [
+        "v6",
+        "h-14"
+      ]
+    ],
+    [
+      "swSom:3",
+      "bz1:2",
+      "magenta",
+      [
+        "v56",
+        "h86",
+        "v-60",
+        "h-18"
+      ]
+    ],
+    [
+      "esp:16",
+      "swSom:3",
+      "yellow",
+      [
+        "h21",
+        "v258",
+        "h260",
+        "v-74"
+      ]
+    ],
+    [
+      "esp:4",
+      "btn1:1.l",
+      "blue",
+      [
+        "h15",
+        "v256",
+        "h412",
+        "v-178"
+      ]
+    ],
+    [
+      "btn1:2.r",
+      "gndBtn:GND",
+      "black",
+      [
+        "h14"
+      ]
+    ],
+    [
+      "btn1:1.r",
+      "swBotao:2",
+      "blue",
+      [
+        "h74"
+      ]
+    ],
+    [
+      "swBotao:3",
+      "gndSwBotao:GND",
+      "black",
+      [
+        "v-8",
+        "h-28"
+      ]
+    ],
+    [
+      "esp:32",
+      "swRede:2",
+      "gray",
+      [
+        "h-41",
+        "v274",
+        "h-44"
+      ]
+    ],
+    [
+      "swRede:1",
+      "gndRede:GND",
+      "black",
+      [
+        "v6",
+        "h-14"
+      ]
+    ],
+    [
+      "ledAlerta:A",
+      "rAlerta:1",
+      "gray",
+      []
+    ],
+    [
+      "ledAlerta:C",
+      "gndAlerta:GND",
+      "black",
+      [
+        "v26",
+        "h-16"
+      ]
+    ],
+    [
+      "esp:33",
+      "rAlerta:2",
+      "orange",
+      [
+        "h-35",
+        "v272",
+        "h-120"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}

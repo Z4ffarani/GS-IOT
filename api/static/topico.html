@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AJA · Semáforo sonoro da travessia monitorada 01</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/estilo.css">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <img src="/static/logo.png" alt="AJA" class="logo">
+    <nav aria-label="Caminho">
+      <ol class="trilha">
+        <li>Parque Doroteia</li>
+        <li>Acessibilidade</li>
+        <li aria-current="page">Travessias</li>
+      </ol>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="cabecalho">
+      <p class="sobretitulo" id="categoria">Acessibilidade · Travessias</p>
+      <h1 id="titulo">Semáforo sonoro da travessia monitorada 01</h1>
+      <p class="local" id="local">Parque Doroteia, São Paulo/SP</p>
+      <ul class="publico" id="publico" aria-label="Público afetado"></ul>
+    </section>
+
+    <section class="situacao" id="situacao" aria-live="polite">
+      <span class="ponto" aria-hidden="true"></span>
+      <div>
+        <p class="situacao-titulo" id="situacao-titulo">Carregando…</p>
+        <p class="situacao-texto" id="situacao-texto"></p>
+      </div>
+    </section>
+
+    <section aria-labelledby="t-impacto">
+      <h2 id="t-impacto" class="aviso-sr">Impacto registrado</h2>
+      <dl class="indicadores">
+        <div><dt>Acionamentos durante falhas</dt><dd id="i-acionamentos">0</dd></div>
+        <div><dt>Tempo total sem funcionar</dt><dd id="i-tempo">0 s</dd></div>
+        <div><dt>Falhas confirmadas pelo equipamento</dt><dd id="i-falhas">0</dd></div>
+        <div><dt>Evidências do equipamento no dossiê</dt><dd id="i-dossie">0</dd></div>
+      </dl>
+    </section>
+
+    <div class="grade">
+      <section class="cartao evidencias" aria-labelledby="t-evidencias">
+        <h2 id="t-evidencias">Evidências do tópico</h2>
+        <p class="nota">Relatos da comunidade e avisos enviados automaticamente pelo equipamento.</p>
+        <ol class="linha-tempo" id="linha-tempo"></ol>
+        <p class="aviso-sr" id="anuncio" aria-live="assertive"></p>
+      </section>
+
+      <aside class="lateral">
+        <section class="cartao" aria-labelledby="t-disp">
+          <div class="cartao-topo">
+            <h2 id="t-disp">AJA Sentinela</h2>
+            <span class="selo" id="conexao">—</span>
+          </div>
+          <p class="nota" id="disp-desc">Dispositivo IoT instalado no semáforo.</p>
+          <ul class="componentes" id="componentes"></ul>
+          <div class="relatorio" id="relatorio" hidden>
+            <h3>Último relatório de uso</h3>
+            <dl class="numeros">
+              <div><dt>Acionamentos da botoeira</dt><dd id="r-acionamentos">–</dd></div>
+              <div><dt>Travessias completas</dt><dd id="r-ciclos">–</dd></div>
+            </dl>
+            <ul class="barras" id="r-disp" aria-label="Disponibilidade de cada parte"></ul>
+          </div>
+        </section>
+
+        <section class="cartao" aria-labelledby="t-dossie">
+          <h2 id="t-dossie">Dossiê e acompanhamento</h2>
+          <dl class="lista">
+            <div><dt>Destino</dt><dd id="d-orgao">–</dd></div>
+            <div><dt>Evidências do equipamento</dt><dd id="d-equip">0</dd></div>
+            <div><dt>Relatos da comunidade</dt><dd id="d-relatos">0</dd></div>
+            <div><dt>Protocolo</dt><dd>Aguardando abertura</dd></div>
+          </dl>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <div class="admin" id="admin" hidden>
+    <button type="button" id="reiniciar">Reiniciar demonstração</button>
+  </div>
+
+  <footer class="rodape">
+    <p>Os avisos do equipamento chegam ao vivo do ESP32 (simulado no Wokwi). Os relatos de moradores são simulados para a demonstração. Nenhum dado pessoal é coletado pelo dispositivo.</p>
+  </footer>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js" async onload="new window.VLibras.Widget('https://vlibras.gov.br/app')"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

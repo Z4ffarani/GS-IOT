@@ -1,0 +1,4 @@
+.git
+firmware
+**/__pycache__
+**/*.db
