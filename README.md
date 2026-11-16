@@ -13,7 +13,7 @@
 |---|---|
 | Projeto no Wokwi | https://wokwi.com/projects/480729769213749249 |
 | Tópico da travessia no AJA (ao vivo) | https://api-production-bd33c9e7.up.railway.app/topicos/travessia-01 |
-| Vídeo de demonstração | `URL_DO_VIDEO` |
+| Vídeo de demonstração | https://youtu.be/j2sgmzeJBTo |
 
 ## O AJA
 
