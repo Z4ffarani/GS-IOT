@@ -107,10 +107,6 @@ Esses pontos estão numa tabela do README.
 - API, como executar, segurança e acessibilidade;
 - limitações, ODS e referências com links.
 
-**Objetivo:** gerar o arquivo com os integrantes.
-
-**Resultado:** o `integrantes.txt` traz os três integrantes com RM, o link do Wokwi e o link do repositório.
-
 ## 7. Produzir o vídeo
 
 **Objetivo:** montar o roteiro do vídeo e da narração.
@@ -119,17 +115,3 @@ Esses pontos estão numa tabela do README.
 - abertura, o AJA e o problema, em cenas animadas;
 - quatro tomadas gravadas no Wokwi e no painel: circuito e travessia normal, falha que vira evidência e conserto, queda de internet, IoB;
 - encerramento animado.
-
-**Objetivo:** entender o que gravar na tela, por que existe um link específico para reiniciar a demonstração e para que servem vários toques na botoeira em poucos segundos.
-
-**Resultado:** cada tomada foi descrita passo a passo. O link de reinício leva uma chave, para que só a equipe consiga zerar o tópico antes de gravar. Os toques repetidos durante uma falha fazem subir, no painel, a contagem de acionamentos durante a falha.
-
-**Objetivo:** editar o vídeo com as gravações e a narração da equipe, mostrando só o circuito e a interface.
-
-**Resultado:** as gravações em HDR foram convertidas para cor padrão e recortadas na área do circuito e do painel, sem a barra do navegador e a barra de tarefas. As cenas animadas usam a paleta neutra do AJA, e os destaques acompanham a narração.
-
-## 8. Revisar e entregar
-
-**Objetivo:** registrar o uso de IA num `prompts.md` no modelo padrão.
-
-**Resultado:** este arquivo, organizado por etapa do trabalho.
